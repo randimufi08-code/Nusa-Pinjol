@@ -13,32 +13,48 @@ class _KalkulatorPageState extends State<KalkulatorPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Logika perhitungan bunga 5%
     double cicilan = (_jumlahPinjaman + (_jumlahPinjaman * 0.05)) / _tenor;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Simulasi Pinjaman'), centerTitle: true),
+      appBar: AppBar(
+        title: const Text('Simulasi Pinjaman', style: TextStyle(fontWeight: FontWeight.bold)),
+        centerTitle: true,
+        backgroundColor: const Color(0xFF1A237E),
+        foregroundColor: Colors.white,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text('Jumlah Pinjaman', style: TextStyle(fontWeight: FontWeight.bold)),
-            Text('Rp ${_jumlahPinjaman.toInt()}', style: const TextStyle(fontSize: 24, color: Color(0xFF1A237E))),
+            const SizedBox(height: 8),
+            Text(
+              'Rp ${_jumlahPinjaman.toInt().toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]}.')}', 
+              style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Color(0xFF1A237E))
+            ),
             Slider(
               value: _jumlahPinjaman,
               min: 500000,
               max: 10000000,
               divisions: 19,
+              activeColor: const Color(0xFF1A237E),
               onChanged: (val) => setState(() => _jumlahPinjaman = val),
             ),
             const SizedBox(height: 30),
             const Text('Tenor (Bulan)', style: TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [3, 6, 12].map((t) => ChoiceChip(
                 label: Text('$t Bulan'),
                 selected: _tenor == t,
-                onSelected: (selected) => setState(() => _tenor = t),
+                selectedColor: const Color(0xFF1A237E),
+                labelStyle: TextStyle(color: _tenor == t ? Colors.white : Colors.black),
+                onSelected: (selected) {
+                  if (selected) setState(() => _tenor = t);
+                },
               )).toList(),
             ),
             const Spacer(),
@@ -47,23 +63,36 @@ class _KalkulatorPageState extends State<KalkulatorPage> {
               decoration: BoxDecoration(
                 color: Colors.indigo[50],
                 borderRadius: BorderRadius.circular(15),
+                border: Border.all(color: Colors.indigo.shade100),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('Estimasi Cicilan/Bulan:'),
-                  Text('Rp ${cicilan.toInt()}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                  const Text('Estimasi Cicilan/Bulan:', style: TextStyle(fontSize: 16)),
+                  Text(
+                    'Rp ${cicilan.toInt().toString().replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]}.')}', 
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18, color: Color(0xFF1A237E))
+                  ),
                 ],
               ),
             ),
             const SizedBox(height: 20),
             SizedBox(
               width: double.infinity,
-              height: 50,
+              height: 55,
               child: ElevatedButton(
-                onPressed: () {}, 
-                style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF1A237E), foregroundColor: Colors.white),
-                child: const Text('AJUKAN SEKARANG'),
+                onPressed: () {
+                  // Tambahkan snackbar sebagai feedback awal
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Memproses Pengajuan...')),
+                  );
+                }, 
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF00C853), // Warna hijau biar kontras & positif
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                child: const Text('AJUKAN SEKARANG', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               ),
             )
           ],
