@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// Pastikan file form_page.dart sudah kamu buat di folder lib
+import 'package:nusapinjol/form_page.dart'; 
 
 class KalkulatorPage extends StatefulWidget {
   const KalkulatorPage({super.key});
@@ -13,7 +15,7 @@ class _KalkulatorPageState extends State<KalkulatorPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Logika perhitungan bunga 5%
+    // Logika bunga 5% sesuai rencana awal
     double cicilan = (_jumlahPinjaman + (_jumlahPinjaman * 0.05)) / _tenor;
 
     return Scaffold(
@@ -82,13 +84,14 @@ class _KalkulatorPageState extends State<KalkulatorPage> {
               height: 55,
               child: ElevatedButton(
                 onPressed: () {
-                  // Tambahkan snackbar sebagai feedback awal
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Memproses Pengajuan...')),
+                  // NAVIGASI SELANJUTNYA: Pindah ke halaman Form Data Diri
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const FormPage()),
                   );
                 }, 
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF00C853), // Warna hijau biar kontras & positif
+                  backgroundColor: const Color(0xFF00C853), // Hijau untuk kesan positif
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                 ),
