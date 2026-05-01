@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+// Pastikan path import ini sesuai dengan folder proyek Anda
+import 'package:nusapinjol/views/kalkulator_page.dart'; 
 
 void main() {
   runApp(const NusaPinjolApp());
@@ -15,14 +17,13 @@ class NusaPinjolApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        // Tema warna yang memberikan kesan "Terpercaya & Aman"
+        // Warna Indigo untuk kesan mewah dan terpercaya
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF1A237E), // Indigo Blue
+          seedColor: const Color(0xFF1A237E),
           primary: const Color(0xFF1A237E),
-          secondary: const Color(0xFF00C853), // Green untuk tombol positif
         ),
-        // Tipografi elegan dengan Poppins
-        textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
+        // Tipografi sesuai blueprint yang elegan
+        textTheme: GoogleFonts.poppinsTextTheme(),
       ),
       home: const LandingPage(),
     );
@@ -35,87 +36,63 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8F9FA),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 40),
-              Text(
-                'Selamat Datang di',
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.grey[600],
-                ),
+      body: Container(
+        padding: const EdgeInsets.all(24.0),
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Spacer(),
+            // Icon Branding NusaPinjol
+            const Icon(
+              Icons.account_balance_rounded,
+              size: 100,
+              color: Color(0xFF1A237E),
+            ),
+            const SizedBox(height: 24),
+            Text(
+              'NusaPinjol',
+              style: GoogleFonts.poppins(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xFF1A237E),
               ),
-              const Text(
-                'NusaPinjol',
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF1A237E),
-                ),
-              ),
-              const SizedBox(height: 10),
-              Container(
-                width: 60,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: const Color(0xFF00C853),
-                  borderRadius: BorderRadius.circular(2),
-                ),
-              ),
-              const Spacer(),
-              // Placeholder untuk Animasi Lottie nanti
-              Center(
-                child: Container(
-                  height: 250,
-                  width: 250,
-                  decoration: BoxDecoration(
-                    color: Colors.indigo.withOpacity(0.1),
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.account_balance_wallet_rounded,
-                    size: 100,
-                    color: Color(0xFF1A237E),
-                  ),
-                ),
-              ),
-              const Spacer(),
-              const Text(
-                'Solusi Pendanaan Aman untuk Kemajuan Usaha Anda.',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              const SizedBox(height: 20),
-              SizedBox(
-                width: double.infinity,
-                height: 55,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Navigasi ke menu utama
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF1A237E),
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+            ),
+            const Text(
+              'Solusi Pendanaan Digital Terpercaya',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16, color: Colors.grey),
+            ),
+            const Spacer(),
+            // Fitur Utama: Navigasi Mulai Sekarang
+            SizedBox(
+              width: double.infinity,
+              height: 55,
+              child: ElevatedButton(
+                onPressed: () {
+                  // Navigasi ke Halaman Kalkulator
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const KalkulatorPage(),
                     ),
-                  ),
-                  child: const Text(
-                    'Mulai Sekarang',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF1A237E),
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
                   ),
                 ),
+                child: const Text(
+                  'Mulai Sekarang',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
               ),
-              const SizedBox(height: 20),
-            ],
-          ),
+            ),
+            const SizedBox(height: 40),
+          ],
         ),
       ),
     );
