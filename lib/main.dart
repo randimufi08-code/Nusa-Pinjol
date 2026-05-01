@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-// Pastikan path import ini sesuai dengan struktur folder kamu
 import 'package:nusapinjol/kalkulator_page.dart'; 
 
 void main() {
@@ -43,77 +42,27 @@ class LandingPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 40),
-              Text(
-                'Selamat Datang di',
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.grey[600],
-                ),
-              ),
-              const Text(
-                'NusaPinjol',
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF1A237E),
-                ),
-              ),
+              Text('Selamat Datang di', style: TextStyle(fontSize: 18, color: Colors.grey[600])),
+              const Text('NusaPinjol', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Color(0xFF1A237E))),
               const SizedBox(height: 10),
-              Container(
-                width: 60,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: const Color(0xFF00C853),
-                  borderRadius: BorderRadius.circular(2),
-                ),
-              ),
+              Container(width: 60, height: 4, decoration: BoxDecoration(color: const Color(0xFF00C853), borderRadius: BorderRadius.circular(2))),
               const Spacer(),
               Center(
                 child: Container(
-                  height: 250,
-                  width: 250,
-                  decoration: BoxDecoration(
-                    color: Colors.indigo.withOpacity(0.1),
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.account_balance_wallet_rounded,
-                    size: 100,
-                    color: Color(0xFF1A237E),
-                  ),
+                  height: 250, width: 250,
+                  decoration: BoxDecoration(color: Colors.indigo.withOpacity(0.1), shape: BoxShape.circle),
+                  child: const Icon(Icons.account_balance_wallet_rounded, size: 100, color: Color(0xFF1A237E)),
                 ),
               ),
               const Spacer(),
-              const Text(
-                'Solusi Pendanaan Aman untuk Kemajuan Usaha Anda.',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+              const Text('Solusi Pendanaan Aman untuk Kemajuan Usaha Anda.', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
               const SizedBox(height: 20),
               SizedBox(
-                width: double.infinity,
-                height: 55,
+                width: double.infinity, height: 55,
                 child: ElevatedButton(
-                  onPressed: () {
-                    // NAVIGASI AKTIF: Pindah ke halaman kalkulator
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const KalkulatorPage()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF1A237E),
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: const Text(
-                    'Mulai Sekarang',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
+                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const KalkulatorPage())),
+                  style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF1A237E), foregroundColor: Colors.white, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+                  child: const Text('Mulai Sekarang', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                 ),
               ),
               const SizedBox(height: 20),
