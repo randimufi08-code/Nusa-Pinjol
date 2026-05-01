@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 import 'app_routes.dart';
 
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(const NusaPinjolApp());
-}
+void main() => runApp(const NusaPinjamApp());
 
-class NusaPinjolApp extends StatelessWidget {
-  const NusaPinjolApp({super.key});
+class NusaPinjamApp extends StatelessWidget {
+  const NusaPinjamApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'NusaPinjol',
       debugShowCheckedModeBanner: false,
+      title: 'NusaPinjam',
       theme: ThemeData(
-        primaryColor: const Color(0xFF1976D2),
-        useMaterial3: true,
+        primaryColor: const Color(0xFF118EEA),
+        scaffoldBackgroundColor: const Color(0xFFF4F7FA),
+        fontFamily: 'Roboto',
       ),
-      initialRoute: AppRoutes.splash,
+      initialRoute: AppRoutes.dashboard,
       routes: AppRoutes.routes,
     );
   }
